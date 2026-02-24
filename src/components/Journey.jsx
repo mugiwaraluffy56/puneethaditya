@@ -32,8 +32,8 @@ const milestones = [
     {
         year: '2026',
         island: 'Whole Cake Island',
-        title: 'Founding Klyna.io',
-        description: 'Building Klyna.io from the ground up as Founder. Turning vision into product, assembling the crew, and charting a course through the New World of startups.',
+        title: 'Founding klyna.io',
+        description: 'Building klyna.io from the ground up as Founder. Turning vision into product, assembling the crew, and charting a course through the New World of startups.',
         side: 'right',
         color: '#27c93f',
     },

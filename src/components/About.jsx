@@ -9,7 +9,7 @@ const details = [
   { key: 'Focus', value: 'ML / Deep Learning' },
   { key: 'Stack', value: 'Python · Go · React · Node.js' },
   { key: 'Location', value: 'India 🇮🇳' },
-  { key: 'Building', value: 'Klyna.io' },
+  { key: 'Building', value: 'klyna.io' },
   { key: 'Dream', value: 'Find the One Piece of Perfect Code' },
 ];
 

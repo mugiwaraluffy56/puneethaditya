@@ -31,13 +31,6 @@ const projects = [
     },
 ];
 
-const contributions = [
-    { org: 'Aathoos', role: 'Maintainer', color: 'var(--red)', href: 'https://github.com/aathoos' },
-    { org: 'MOFA-org', role: 'Contributor', color: 'var(--gold)', href: 'https://github.com/mofa-org' },
-    { org: 'LLVM', role: 'Contributor', color: '#4a9eff', href: 'https://github.com/llvm' },
-    { org: 'Inspektor Gadget', role: 'Contributor', color: '#9d4edd', href: 'https://github.com/inspektor-gadget' },
-];
-
 function ProjectCard({ project, index }) {
     const cardRef = useRef(null);
 
@@ -240,7 +233,7 @@ export default function Projects() {
             }}
         >
             <div className="container">
-                <div ref={labelRef} className="section-label">04 — Bounty Board</div>
+                <div ref={labelRef} className="section-label">05 — Bounty Board</div>
                 <h2 ref={headingRef} style={{
                     fontSize: 'clamp(36px, 4vw, 52px)',
                     fontWeight: 800,
@@ -257,72 +250,6 @@ export default function Projects() {
                     {projects.map((project, i) => (
                         <ProjectCard key={project.title} project={project} index={i} />
                     ))}
-                </div>
-
-                {/* Open Source Contributions */}
-                <div style={{
-                    marginTop: 48,
-                    padding: '28px 28px',
-                    background: 'var(--bg-1)',
-                    border: '1px solid var(--border)',
-                    borderRadius: 2,
-                }}>
-                    <div style={{
-                        fontFamily: 'var(--font-mono)',
-                        fontSize: 11,
-                        letterSpacing: '0.15em',
-                        textTransform: 'uppercase',
-                        color: 'var(--text-muted)',
-                        marginBottom: 20,
-                    }}>⚔️ Open Source Contributions</div>
-                    <div style={{
-                        display: 'grid',
-                        gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-                        gap: 16,
-                    }}>
-                        {contributions.map((c) => (
-                            <a
-                                key={c.org}
-                                href={c.href}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                style={{
-                                    padding: '16px 20px',
-                                    border: '1px solid var(--border)',
-                                    borderRadius: 2,
-                                    transition: 'border-color 0.3s, transform 0.2s',
-                                    textDecoration: 'none',
-                                    display: 'block',
-                                }}
-                                onMouseEnter={(e) => {
-                                    e.currentTarget.style.borderColor = `${c.color}60`;
-                                    e.currentTarget.style.transform = 'translateY(-2px)';
-                                }}
-                                onMouseLeave={(e) => {
-                                    e.currentTarget.style.borderColor = 'var(--border)';
-                                    e.currentTarget.style.transform = 'translateY(0)';
-                                }}
-                            >
-                                <div style={{
-                                    fontFamily: 'var(--font-display)',
-                                    fontSize: 16,
-                                    fontWeight: 600,
-                                    color: 'var(--text-primary)',
-                                    marginBottom: 4,
-                                }}>{c.org} ↗</div>
-                                <span style={{
-                                    fontFamily: 'var(--font-mono)',
-                                    fontSize: 10,
-                                    letterSpacing: '0.15em',
-                                    textTransform: 'uppercase',
-                                    color: c.color,
-                                    padding: '2px 8px',
-                                    border: `1px solid ${c.color}30`,
-                                    borderRadius: 2,
-                                }}>{c.role}</span>
-                            </a>
-                        ))}
-                    </div>
                 </div>
                 <div style={{
                     marginTop: 48,

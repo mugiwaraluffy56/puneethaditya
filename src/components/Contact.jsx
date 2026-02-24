@@ -80,7 +80,7 @@ export default function Contact() {
             }}
         >
             <div className="container">
-                <div ref={labelRef} className="section-label">05 — Den Den Mushi</div>
+                <div ref={labelRef} className="section-label">07 — Den Den Mushi</div>
                 <h2 ref={headingRef} style={{
                     fontSize: 'clamp(36px, 5vw, 64px)',
                     fontWeight: 800,

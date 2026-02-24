@@ -10,7 +10,9 @@ import Hero from './components/Hero';
 import About from './components/About';
 import Skills from './components/Skills';
 import Journey from './components/Journey';
+import Klyna from './components/Klyna';
 import Projects from './components/Projects';
+import OpenSource from './components/OpenSource';
 import Contact from './components/Contact';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -53,7 +55,9 @@ function App() {
         <About />
         <Skills />
         <Journey />
+        <Klyna />
         <Projects />
+        <OpenSource />
         <Contact />
       </main>
     </>
