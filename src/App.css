@@ -6,13 +6,6 @@
   min-height: 100vh;
 }
 
-/* Section transitions — initial state for scroll reveals */
-main section:not(:first-child) {
-  opacity: 0;
-  transform: translateY(60px);
-  will-change: opacity, transform;
-}
-
 /* ─── Mobile Responsive ──────────────────────────── */
 @media (max-width: 768px) {
 

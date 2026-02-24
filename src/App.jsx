@@ -20,17 +20,14 @@ gsap.registerPlugin(ScrollTrigger);
 
 function App() {
   const lenisRef = useRef(null);
-  const mainRef = useRef(null);
   const [loading, setLoading] = useState(true);
 
   const handlePreloaderComplete = useCallback(() => {
     setLoading(false);
-    // Refresh ScrollTrigger after preloader is gone
     setTimeout(() => ScrollTrigger.refresh(), 100);
   }, []);
 
   useEffect(() => {
-    // Lock scroll during preloader
     if (loading) {
       document.body.style.overflow = 'hidden';
       return;
@@ -48,7 +45,6 @@ function App() {
 
     lenisRef.current = lenis;
 
-    // Connect Lenis to GSAP ScrollTrigger
     lenis.on('scroll', ScrollTrigger.update);
 
     gsap.ticker.add((time) => {
@@ -56,35 +52,6 @@ function App() {
     });
 
     gsap.ticker.lagSmoothing(0);
-
-    // Section transition animations
-    const sections = mainRef.current?.querySelectorAll('section');
-    if (sections) {
-      sections.forEach((section, i) => {
-        // Skip hero — it's the first thing visible
-        if (i === 0) return;
-
-        gsap.fromTo(section,
-          {
-            opacity: 0,
-            y: 60,
-          },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 1,
-            ease: 'power3.out',
-            scrollTrigger: {
-              trigger: section,
-              start: 'top 85%',
-              end: 'top 40%',
-              toggleActions: 'play none none none',
-              once: true,
-            },
-          }
-        );
-      });
-    }
 
     return () => {
       lenis.destroy();
@@ -97,7 +64,7 @@ function App() {
       {loading && <Preloader onComplete={handlePreloaderComplete} />}
       <CustomCursor />
       <Navbar />
-      <main ref={mainRef}>
+      <main>
         <Hero />
         <About />
         <Skills />
