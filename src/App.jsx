@@ -22,6 +22,12 @@ function App() {
   const lenisRef = useRef(null);
   const [loading, setLoading] = useState(true);
 
+  // Always start from the top on page load/reload
+  useEffect(() => {
+    window.history.scrollRestoration = 'manual';
+    window.scrollTo(0, 0);
+  }, []);
+
   const handlePreloaderComplete = useCallback(() => {
     setLoading(false);
     setTimeout(() => ScrollTrigger.refresh(), 100);
