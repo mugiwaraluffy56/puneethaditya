@@ -35,6 +35,14 @@ function App() {
 
     document.body.style.overflow = '';
 
+    // Skip Lenis on touch devices — native scroll is better for mobile
+    const isTouch =
+      'ontouchstart' in window ||
+      navigator.maxTouchPoints > 0 ||
+      window.matchMedia('(pointer: coarse)').matches;
+
+    if (isTouch) return;
+
     // Initialize Lenis smooth scroll
     const lenis = new Lenis({
       duration: 1.2,

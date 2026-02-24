@@ -242,7 +242,7 @@ export default function Projects() {
                     Featured <span style={{ color: 'var(--red)' }}>Projects</span>
                 </h2>
 
-                <div style={{
+                <div className="projects-grid" style={{
                     display: 'grid',
                     gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
                     gap: 20,

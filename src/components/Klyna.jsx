@@ -79,7 +79,7 @@ export default function Klyna() {
                     <span style={{ color: 'var(--red)' }}>◆</span> Founder
                 </div>
 
-                <div style={{
+                <div className="klyna-grid" style={{
                     display: 'grid',
                     gridTemplateColumns: '1fr 1fr',
                     gap: 'clamp(40px, 6vw, 80px)',
@@ -94,7 +94,7 @@ export default function Klyna() {
                             marginBottom: 24,
                             lineHeight: 1.05,
                         }}>
-                            <span style={{ color: 'var(--red)' }}>klyna</span><span style={{ color: 'var(--text-muted)' }}>.io</span>
+                            <span style={{ color: 'var(--red)' }}>klyna</span><span style={{ color: 'var(--text-primary)' }}>.io</span>
                         </h2>
 
                         <div ref={descRef}>

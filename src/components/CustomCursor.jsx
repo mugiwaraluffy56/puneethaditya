@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 
 export default function CustomCursor() {
@@ -6,8 +6,20 @@ export default function CustomCursor() {
   const ringRef = useRef(null);
   const pos = useRef({ x: 0, y: 0 });
   const ring = useRef({ x: 0, y: 0 });
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
 
   useEffect(() => {
+    // Detect touch devices
+    const isTouch =
+      'ontouchstart' in window ||
+      navigator.maxTouchPoints > 0 ||
+      window.matchMedia('(pointer: coarse)').matches;
+
+    if (isTouch) {
+      setIsTouchDevice(true);
+      return;
+    }
+
     const dot = dotRef.current;
     const ringEl = ringRef.current;
 
@@ -65,6 +77,8 @@ export default function CustomCursor() {
       observer.disconnect();
     };
   }, []);
+
+  if (isTouchDevice) return null;
 
   return (
     <>

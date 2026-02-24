@@ -182,7 +182,7 @@ export default function OpenSource() {
                 </h2>
 
                 {/* Org cards */}
-                <div ref={orgsRef} style={{
+                <div ref={orgsRef} className="oss-orgs-grid" style={{
                     display: 'grid',
                     gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
                     gap: 16,

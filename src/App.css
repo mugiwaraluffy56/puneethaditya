@@ -7,38 +7,74 @@
 }
 
 /* ─── Mobile Responsive ──────────────────────────── */
+
+/* ── Tablet & below (≤768px) ── */
 @media (max-width: 768px) {
 
-  /* About section: stack columns */
-  #about .container>div {
-    grid-template-columns: 1fr !important;
-  }
-
-  /* Journey timeline: single column */
-  #journey [style*="grid-template-columns: 1fr auto 1fr"] {
-    grid-template-columns: auto 1fr !important;
-  }
-
-  #journey [style*="text-align: right"] {
-    text-align: left !important;
-  }
-
-  /* Navbar: hide links on small screens, show logo */
-  nav ul {
+  /* Navbar: hide desktop links, show hamburger */
+  .desktop-nav {
     display: none !important;
   }
 
-  /* Project cards: single column */
-  #projects .container>div:nth-child(3) {
-    grid-template-columns: 1fr !important;
+  .mobile-menu-btn {
+    display: flex !important;
   }
 
-  /* Contact social links: stack */
-  #contact [style*="display: flex"][style*="gap: 16px"] {
-    flex-direction: column;
+  /* About section: stack columns */
+  .about-grid {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+  }
+
+  /* Klyna section: stack columns */
+  .klyna-grid {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+  }
+
+  /* Journey timeline: left-aligned single column */
+  .journey-card {
+    grid-template-columns: auto 1fr !important;
+  }
+
+  .journey-card>div:first-child {
+    display: none !important;
+  }
+
+  .journey-card>div:last-child {
+    text-align: left !important;
+  }
+
+  .journey-card>div:last-child [style*="text-align"] {
+    text-align: left !important;
+  }
+
+  .journey-line {
+    left: 7px !important;
+    transform: none !important;
+  }
+
+  /* OpenSource PR rows: stack on mobile */
+  .pr-row {
+    grid-template-columns: 1fr auto !important;
+    gap: 4px 12px !important;
+  }
+
+  .pr-row>span:first-child {
+    grid-column: 1 / -1;
+  }
+
+  .pr-row>span:nth-child(2) {
+    grid-column: 1 / -1;
+  }
+
+  /* Org grid: 1 col on small tablets */
+  .oss-orgs-grid {
+    grid-template-columns: 1fr !important;
   }
 }
 
+/* ── Phone (≤480px) ── */
 @media (max-width: 480px) {
   :root {
     --section-pad: 60px;
@@ -50,6 +86,31 @@
 
   h2 {
     font-size: 32px !important;
+  }
+
+  /* Projects grid: force single column */
+  .projects-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Social links in contact: full width */
+  .social-link {
+    flex: 1 1 100% !important;
+  }
+}
+
+/* ── Very small phones (≤360px) ── */
+@media (max-width: 360px) {
+  h1 {
+    font-size: 32px !important;
+  }
+
+  h2 {
+    font-size: 26px !important;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr !important;
   }
 }
 

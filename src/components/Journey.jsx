@@ -71,6 +71,7 @@ function MilestoneCard({ milestone, index }) {
     return (
         <div
             ref={cardRef}
+            className="journey-card"
             style={{
                 display: 'grid',
                 gridTemplateColumns: '1fr auto 1fr',
@@ -234,6 +235,7 @@ export default function Journey() {
                     {/* Vertical line */}
                     <div
                         ref={lineRef}
+                        className="journey-line"
                         style={{
                             position: 'absolute',
                             left: '50%',

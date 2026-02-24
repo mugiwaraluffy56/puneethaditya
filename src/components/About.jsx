@@ -77,7 +77,7 @@ export default function About() {
       }}
     >
       <div className="container">
-        <div style={{
+        <div className="about-grid" style={{
           display: 'grid',
           gridTemplateColumns: '1fr 1fr',
           gap: 'clamp(40px, 6vw, 80px)',

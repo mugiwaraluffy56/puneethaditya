@@ -49,27 +49,29 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
-  cursor: none;
 }
 
-*,
-*::before,
-*::after {
-  cursor: none !important;
+/* Hide cursor only on non-touch devices */
+@media (pointer: fine) {
+  body {
+    cursor: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    cursor: none !important;
+  }
 }
 
-/* ─── Scrollbar ────────────────────────────────────── */
+/* ─── Scrollbar — hidden ───────────────────────────── */
 ::-webkit-scrollbar {
-  width: 2px;
+  display: none;
 }
 
-::-webkit-scrollbar-track {
-  background: var(--bg-0);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--red);
-  border-radius: 2px;
+body {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 /* ─── Selection ────────────────────────────────────── */
