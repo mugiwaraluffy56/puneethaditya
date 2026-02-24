@@ -85,14 +85,14 @@ export default function Klyna() {
                 overflow: 'hidden',
             }}
         >
-            {/* Subtle green glow */}
+            {/* Subtle red glow */}
             <div style={{
                 position: 'absolute',
                 top: '10%',
                 right: '-5%',
                 width: '400px',
                 height: '400px',
-                background: 'radial-gradient(circle, rgba(39,201,63,0.06) 0%, transparent 70%)',
+                background: 'radial-gradient(circle, rgba(220,20,60,0.06) 0%, transparent 70%)',
                 pointerEvents: 'none',
                 borderRadius: '50%',
             }} />
@@ -117,7 +117,7 @@ export default function Klyna() {
                             marginBottom: 24,
                             lineHeight: 1.05,
                         }}>
-                            <span style={{ color: '#27c93f' }}>klyna</span><span style={{ color: 'var(--text-muted)' }}>.io</span>
+                            <span style={{ color: 'var(--red)' }}>klyna</span><span style={{ color: 'var(--text-muted)' }}>.io</span>
                         </h2>
 
                         <div ref={descRef}>
@@ -146,7 +146,7 @@ export default function Klyna() {
 
                             {/* Mission */}
                             <div style={{
-                                borderLeft: '2px solid #27c93f',
+                                borderLeft: '2px solid var(--red)',
                                 paddingLeft: 16,
                                 marginBottom: 32,
                             }}>
@@ -173,8 +173,8 @@ export default function Klyna() {
                                         alignItems: 'center',
                                         gap: 8,
                                         padding: '12px 24px',
-                                        background: '#27c93f',
-                                        color: '#000',
+                                        background: 'var(--red)',
+                                        color: '#fff',
                                         fontFamily: 'var(--font-mono)',
                                         fontSize: 12,
                                         letterSpacing: '0.1em',
@@ -185,7 +185,7 @@ export default function Klyna() {
                                     }}
                                     onMouseEnter={(e) => {
                                         e.currentTarget.style.transform = 'translateY(-2px)';
-                                        e.currentTarget.style.boxShadow = '0 12px 40px rgba(39,201,63,0.25)';
+                                        e.currentTarget.style.boxShadow = '0 12px 40px rgba(220,20,60,0.3)';
                                     }}
                                     onMouseLeave={(e) => {
                                         e.currentTarget.style.transform = 'translateY(0)';
@@ -195,7 +195,7 @@ export default function Klyna() {
                                     Visit klyna.io ↗
                                 </a>
                                 <a
-                                    href="https://www.linkedin.com/company/klyna"
+                                    href="https://www.linkedin.com/company/klyna-io"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     style={{
@@ -203,7 +203,7 @@ export default function Klyna() {
                                         alignItems: 'center',
                                         gap: 8,
                                         padding: '11px 24px',
-                                        border: '1px solid rgba(39,201,63,0.3)',
+                                        border: '1px solid rgba(220,20,60,0.3)',
                                         color: 'var(--text-secondary)',
                                         fontFamily: 'var(--font-mono)',
                                         fontSize: 12,
@@ -213,11 +213,11 @@ export default function Klyna() {
                                         transition: 'border-color 0.2s, color 0.2s',
                                     }}
                                     onMouseEnter={(e) => {
-                                        e.currentTarget.style.borderColor = '#27c93f';
+                                        e.currentTarget.style.borderColor = 'var(--red)';
                                         e.currentTarget.style.color = 'var(--text-primary)';
                                     }}
                                     onMouseLeave={(e) => {
-                                        e.currentTarget.style.borderColor = 'rgba(39,201,63,0.3)';
+                                        e.currentTarget.style.borderColor = 'rgba(220,20,60,0.3)';
                                         e.currentTarget.style.color = 'var(--text-secondary)';
                                     }}
                                 >
@@ -244,7 +244,7 @@ export default function Klyna() {
                                     transition: 'border-color 0.3s, transform 0.2s',
                                 }}
                                 onMouseEnter={(e) => {
-                                    e.currentTarget.style.borderColor = 'rgba(39,201,63,0.3)';
+                                    e.currentTarget.style.borderColor = 'var(--border-hover)';
                                     e.currentTarget.style.transform = 'translateY(-3px)';
                                 }}
                                 onMouseLeave={(e) => {

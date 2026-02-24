@@ -35,7 +35,7 @@ const milestones = [
         title: 'Founding klyna.io',
         description: 'Building klyna.io from the ground up as Founder. Turning vision into product, assembling the crew, and charting a course through the New World of startups.',
         side: 'right',
-        color: '#27c93f',
+        color: 'var(--gold)',
     },
     {
         year: '20XX',
