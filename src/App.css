@@ -6,10 +6,18 @@
   min-height: 100vh;
 }
 
+/* Section transitions — initial state for scroll reveals */
+main section:not(:first-child) {
+  opacity: 0;
+  transform: translateY(60px);
+  will-change: opacity, transform;
+}
+
 /* ─── Mobile Responsive ──────────────────────────── */
 @media (max-width: 768px) {
+
   /* About section: stack columns */
-  #about .container > div {
+  #about .container>div {
     grid-template-columns: 1fr !important;
   }
 
@@ -17,6 +25,7 @@
   #journey [style*="grid-template-columns: 1fr auto 1fr"] {
     grid-template-columns: auto 1fr !important;
   }
+
   #journey [style*="text-align: right"] {
     text-align: left !important;
   }
@@ -27,7 +36,7 @@
   }
 
   /* Project cards: single column */
-  #projects .container > div:nth-child(3) {
+  #projects .container>div:nth-child(3) {
     grid-template-columns: 1fr !important;
   }
 
