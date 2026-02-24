@@ -1,0 +1,117 @@
+/* ─── Reset & Base ─────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  /* Colors */
+  --bg-0: #060606;
+  --bg-1: #0d0d0d;
+  --bg-2: #141414;
+  --bg-3: #1a1a1a;
+  --border: rgba(255,255,255,0.06);
+  --border-hover: rgba(220,20,60,0.3);
+
+  --red: #dc143c;
+  --red-dim: rgba(220,20,60,0.15);
+  --red-glow: rgba(220,20,60,0.06);
+  --gold: #c4a24d;
+  --gold-dim: rgba(196,162,77,0.12);
+
+  --text-primary: #f0f0f0;
+  --text-secondary: #888;
+  --text-muted: #444;
+  --text-code: #c4a24d;
+
+  /* Typography */
+  --font-display: 'Syne', sans-serif;
+  --font-body: 'Space Grotesk', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Spacing */
+  --section-pad: clamp(80px, 12vw, 140px);
+  --container: min(1140px, 92vw);
+}
+
+html {
+  scroll-behavior: auto;
+}
+
+body {
+  background: var(--bg-0);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+*, *::before, *::after {
+  cursor: none !important;
+}
+
+/* ─── Scrollbar ────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 2px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-0);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--red);
+  border-radius: 2px;
+}
+
+/* ─── Selection ────────────────────────────────────── */
+::selection {
+  background: var(--red-dim);
+  color: var(--text-primary);
+}
+
+/* ─── Typography ───────────────────────────────────── */
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+code, pre {
+  font-family: var(--font-mono);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ─── Utilities ────────────────────────────────────── */
+.container {
+  width: var(--container);
+  margin: 0 auto;
+}
+
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.section-label::before {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 1px;
+  background: var(--red);
+  flex-shrink: 0;
+}

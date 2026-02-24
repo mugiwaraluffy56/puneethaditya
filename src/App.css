@@ -1,0 +1,74 @@
+/* ─── App-level overrides ─────────────────────────── */
+
+/* Remove Vite defaults — portfolio owns the layout */
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* ─── Mobile Responsive ──────────────────────────── */
+@media (max-width: 768px) {
+  /* About section: stack columns */
+  #about .container > div {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Journey timeline: single column */
+  #journey [style*="grid-template-columns: 1fr auto 1fr"] {
+    grid-template-columns: auto 1fr !important;
+  }
+  #journey [style*="text-align: right"] {
+    text-align: left !important;
+  }
+
+  /* Navbar: hide links on small screens, show logo */
+  nav ul {
+    display: none !important;
+  }
+
+  /* Project cards: single column */
+  #projects .container > div:nth-child(3) {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Contact social links: stack */
+  #contact [style*="display: flex"][style*="gap: 16px"] {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --section-pad: 60px;
+  }
+
+  h1 {
+    font-size: 40px !important;
+  }
+
+  h2 {
+    font-size: 32px !important;
+  }
+}
+
+/* ─── Smooth scroll feel ─────────────────────────── */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
