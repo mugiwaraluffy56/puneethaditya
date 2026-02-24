@@ -6,53 +6,36 @@ gsap.registerPlugin(ScrollTrigger);
 
 const projects = [
     {
-        title: 'ML License Detection System',
-        description: 'Full-stack ML-assisted license detection system with multi-stage processing pipeline — TF-IDF, BERT, regex scanning, and a hybrid decision engine. Frontend + Backend.',
-        tags: ['Python', 'TensorFlow', 'React', 'Node.js'],
-        github: 'https://github.com/mugiwaraluffy56',
+        title: 'PythonizeJS',
+        description: 'A tool that bridges the gap between Python and JavaScript — bringing Python-style syntax sugar and utilities to the JS ecosystem.',
+        tags: ['JavaScript', 'Python', 'Node.js'],
+        github: 'https://github.com/mugiwaraluffy56/pythonizejs',
         live: null,
         featured: true,
     },
     {
-        title: 'Vision-Language Infrastructure Inspector',
-        description: 'AI-powered infrastructure inspection using Vision-Language models. Beautiful Three.js frontend with Lenis scrolling and GSAP animations.',
-        tags: ['Python', 'Three.js', 'React', 'AI/ML'],
-        github: 'https://github.com/mugiwaraluffy56',
+        title: 'Go-Git',
+        description: 'A Git implementation written in Go — low-level version control operations built from scratch. Understanding the plumbing behind the porcelain.',
+        tags: ['Go', 'Git', 'CLI'],
+        github: 'https://github.com/mugiwaraluffy56/go-git',
         live: null,
         featured: true,
     },
     {
-        title: 'Portfolio — Code Pirate',
-        description: 'This very site! One Piece themed developer portfolio built with React, GSAP, and Lenis smooth scroll. Pure vibes.',
-        tags: ['React', 'GSAP', 'Lenis', 'Vite'],
-        github: 'https://github.com/mugiwaraluffy56',
-        live: '#hero',
-        featured: false,
-    },
-    {
-        title: 'AI Chatbot Engine',
-        description: 'Conversational AI engine with context retention and multi-turn dialogue capabilities. Built with modern NLP techniques.',
-        tags: ['Python', 'NLP', 'FastAPI', 'React'],
-        github: 'https://github.com/mugiwaraluffy56',
+        title: 'Go-Bank',
+        description: 'A backend banking service built in Go with RESTful APIs, JWT auth, database transactions, and clean architecture patterns.',
+        tags: ['Go', 'PostgreSQL', 'REST', 'Docker'],
+        github: 'https://github.com/mugiwaraluffy56/go-bank',
         live: null,
-        featured: false,
+        featured: true,
     },
-    {
-        title: 'Real-Time Data Dashboard',
-        description: 'Live data visualization dashboard with WebSocket streaming, interactive charts, and responsive dark-mode UI.',
-        tags: ['React', 'WebSocket', 'D3.js', 'Node.js'],
-        github: 'https://github.com/mugiwaraluffy56',
-        live: null,
-        featured: false,
-    },
-    {
-        title: 'CLI Task Manager — Nakama',
-        description: 'Minimal, blazing-fast command-line task manager with priority queuing, tags, and deadline tracking. Inspired by the crew.',
-        tags: ['Python', 'Click', 'SQLite'],
-        github: 'https://github.com/mugiwaraluffy56',
-        live: null,
-        featured: false,
-    },
+];
+
+const contributions = [
+    { org: 'Aathoos', role: 'Maintainer', color: 'var(--red)', href: 'https://github.com/aathoos' },
+    { org: 'MOFA-org', role: 'Contributor', color: 'var(--gold)', href: 'https://github.com/mofa-org' },
+    { org: 'LLVM', role: 'Contributor', color: '#4a9eff', href: 'https://github.com/llvm' },
+    { org: 'Inspektor Gadget', role: 'Contributor', color: '#9d4edd', href: 'https://github.com/inspektor-gadget' },
 ];
 
 function ProjectCard({ project, index }) {
@@ -276,7 +259,71 @@ export default function Projects() {
                     ))}
                 </div>
 
-                {/* GitHub CTA */}
+                {/* Open Source Contributions */}
+                <div style={{
+                    marginTop: 48,
+                    padding: '28px 28px',
+                    background: 'var(--bg-1)',
+                    border: '1px solid var(--border)',
+                    borderRadius: 2,
+                }}>
+                    <div style={{
+                        fontFamily: 'var(--font-mono)',
+                        fontSize: 11,
+                        letterSpacing: '0.15em',
+                        textTransform: 'uppercase',
+                        color: 'var(--text-muted)',
+                        marginBottom: 20,
+                    }}>⚔️ Open Source Contributions</div>
+                    <div style={{
+                        display: 'grid',
+                        gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+                        gap: 16,
+                    }}>
+                        {contributions.map((c) => (
+                            <a
+                                key={c.org}
+                                href={c.href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                style={{
+                                    padding: '16px 20px',
+                                    border: '1px solid var(--border)',
+                                    borderRadius: 2,
+                                    transition: 'border-color 0.3s, transform 0.2s',
+                                    textDecoration: 'none',
+                                    display: 'block',
+                                }}
+                                onMouseEnter={(e) => {
+                                    e.currentTarget.style.borderColor = `${c.color}60`;
+                                    e.currentTarget.style.transform = 'translateY(-2px)';
+                                }}
+                                onMouseLeave={(e) => {
+                                    e.currentTarget.style.borderColor = 'var(--border)';
+                                    e.currentTarget.style.transform = 'translateY(0)';
+                                }}
+                            >
+                                <div style={{
+                                    fontFamily: 'var(--font-display)',
+                                    fontSize: 16,
+                                    fontWeight: 600,
+                                    color: 'var(--text-primary)',
+                                    marginBottom: 4,
+                                }}>{c.org} ↗</div>
+                                <span style={{
+                                    fontFamily: 'var(--font-mono)',
+                                    fontSize: 10,
+                                    letterSpacing: '0.15em',
+                                    textTransform: 'uppercase',
+                                    color: c.color,
+                                    padding: '2px 8px',
+                                    border: `1px solid ${c.color}30`,
+                                    borderRadius: 2,
+                                }}>{c.role}</span>
+                            </a>
+                        ))}
+                    </div>
+                </div>
                 <div style={{
                     marginTop: 48,
                     textAlign: 'center',

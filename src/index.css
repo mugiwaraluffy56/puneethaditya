@@ -1,5 +1,7 @@
 /* ─── Reset & Base ─────────────────────────────────── */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -11,14 +13,14 @@
   --bg-1: #0d0d0d;
   --bg-2: #141414;
   --bg-3: #1a1a1a;
-  --border: rgba(255,255,255,0.06);
-  --border-hover: rgba(220,20,60,0.3);
+  --border: rgba(255, 255, 255, 0.06);
+  --border-hover: rgba(220, 20, 60, 0.3);
 
   --red: #dc143c;
-  --red-dim: rgba(220,20,60,0.15);
-  --red-glow: rgba(220,20,60,0.06);
+  --red-dim: rgba(220, 20, 60, 0.15);
+  --red-glow: rgba(220, 20, 60, 0.06);
   --gold: #c4a24d;
-  --gold-dim: rgba(196,162,77,0.12);
+  --gold-dim: rgba(196, 162, 77, 0.12);
 
   --text-primary: #f0f0f0;
   --text-secondary: #888;
@@ -26,7 +28,7 @@
   --text-code: #c4a24d;
 
   /* Typography */
-  --font-display: 'Syne', sans-serif;
+  --font-display: 'Outfit', sans-serif;
   --font-body: 'Space Grotesk', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 
@@ -50,7 +52,9 @@ body {
   cursor: none;
 }
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   cursor: none !important;
 }
 
@@ -58,9 +62,11 @@ body {
 ::-webkit-scrollbar {
   width: 2px;
 }
+
 ::-webkit-scrollbar-track {
   background: var(--bg-0);
 }
+
 ::-webkit-scrollbar-thumb {
   background: var(--red);
   border-radius: 2px;
@@ -73,14 +79,18 @@ body {
 }
 
 /* ─── Typography ───────────────────────────────────── */
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
   font-family: var(--font-display);
   font-weight: 700;
   line-height: 1.1;
   letter-spacing: -0.02em;
 }
 
-code, pre {
+code,
+pre {
   font-family: var(--font-mono);
 }
 

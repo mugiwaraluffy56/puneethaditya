@@ -20,31 +20,31 @@ export default function Hero() {
       { opacity: 0 },
       { opacity: 1, duration: 2, ease: 'power2.out' }
     )
-    .fromTo(subRef.current,
-      { y: 20, opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.7, ease: 'power3.out' },
-      '-=1.5'
-    )
-    .fromTo(headingRef.current.querySelectorAll('.word'),
-      { y: '110%', opacity: 0 },
-      { y: '0%', opacity: 1, duration: 0.9, ease: 'power4.out', stagger: 0.07 },
-      '-=0.4'
-    )
-    .fromTo(descRef.current,
-      { y: 20, opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.7, ease: 'power3.out' },
-      '-=0.3'
-    )
-    .fromTo(ctaRef.current.children,
-      { y: 20, opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.6, stagger: 0.1, ease: 'power3.out' },
-      '-=0.3'
-    )
-    .fromTo(scrollHintRef.current,
-      { opacity: 0 },
-      { opacity: 1, duration: 0.8 },
-      '-=0.2'
-    );
+      .fromTo(subRef.current,
+        { y: 20, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.7, ease: 'power3.out' },
+        '-=1.5'
+      )
+      .fromTo(headingRef.current.querySelectorAll('.word'),
+        { y: '110%', opacity: 0 },
+        { y: '0%', opacity: 1, duration: 0.9, ease: 'power4.out', stagger: 0.07 },
+        '-=0.4'
+      )
+      .fromTo(descRef.current,
+        { y: 20, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.7, ease: 'power3.out' },
+        '-=0.3'
+      )
+      .fromTo(ctaRef.current.children,
+        { y: 20, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.6, stagger: 0.1, ease: 'power3.out' },
+        '-=0.3'
+      )
+      .fromTo(scrollHintRef.current,
+        { opacity: 0 },
+        { opacity: 1, duration: 0.8 },
+        '-=0.2'
+      );
 
     // Subtle parallax on scroll
     gsap.to(headingRef.current, {
@@ -68,7 +68,7 @@ export default function Hero() {
     });
   }, []);
 
-  const words = ["Code", "Pirate.", "AI/ML", "Explorer."];
+  const words = ["Code", "Pirate.", "ML/DL", "Explorer."];
 
   return (
     <section
@@ -169,7 +169,7 @@ export default function Hero() {
             fontWeight: 300,
           }}
         >
-          Navigating the treacherous waters of Machine Learning & Full Stack Development.
+          Navigating the treacherous waters of Machine Learning, Deep Learning & Full Stack Development.
           Building things that matter, one commit at a time.
         </p>
 

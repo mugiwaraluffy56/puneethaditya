@@ -74,13 +74,20 @@ export default function Navbar() {
         justifyContent: 'space-between',
       }}>
         <a href="#hero" onClick={(e) => handleClick(e, '#hero')} style={{
-          fontFamily: 'var(--font-mono)',
-          fontSize: 13,
-          color: 'var(--red)',
-          letterSpacing: '0.1em',
-          fontWeight: 400,
+          display: 'flex',
+          alignItems: 'center',
+          gap: 8,
         }}>
-          ⚓ PA
+          <img
+            src="https://avatars.githubusercontent.com/u/202161831?s=400&u=642e402b01d285085356f8e58cf5103be4049180&v=4"
+            alt="Puneeth Aditya"
+            style={{
+              width: 28,
+              height: 28,
+              borderRadius: '50%',
+              border: '1px solid rgba(220,20,60,0.4)',
+            }}
+          />
         </a>
 
         <ul style={{

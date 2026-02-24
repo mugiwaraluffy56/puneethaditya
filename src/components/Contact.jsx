@@ -12,12 +12,12 @@ const socials = [
     },
     {
         label: 'LinkedIn',
-        href: 'https://linkedin.com/in/puneeth-aditya',
+        href: 'https://www.linkedin.com/in/puneethaditya/',
         icon: '🧭',
     },
     {
         label: 'Email',
-        href: 'mailto:puneethaditya@example.com',
+        href: 'mailto:myakampuneeth@gmail.com',
         icon: '📨',
     },
 ];
