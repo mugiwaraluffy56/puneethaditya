@@ -4,29 +4,6 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const features = [
-    {
-        icon: '⚡',
-        title: 'Real-Time Monitoring',
-        description: 'Track API latency, error rates, and usage patterns as they happen — not hours later.',
-    },
-    {
-        icon: '🔍',
-        title: 'Deep Visibility',
-        description: 'Go beyond uptime. Understand reliability metrics, response patterns, and performance trends.',
-    },
-    {
-        icon: '🛡️',
-        title: 'Early Detection',
-        description: 'Detect issues before your customers do. Prevent failures, protect revenue.',
-    },
-    {
-        icon: '📊',
-        title: 'Actionable Insights',
-        description: 'Turn complex API activity into clear dashboards and alerts that your team can act on.',
-    },
-];
-
 export default function Klyna() {
     const sectionRef = useRef(null);
     const labelRef = useRef(null);
@@ -227,47 +204,57 @@ export default function Klyna() {
                         </div>
                     </div>
 
-                    {/* Right — Feature cards */}
-                    <div ref={featuresRef} style={{
-                        display: 'grid',
-                        gridTemplateColumns: '1fr 1fr',
-                        gap: 16,
-                    }}>
-                        {features.map((f) => (
-                            <div
-                                key={f.title}
-                                className="feature-card"
-                                style={{
-                                    padding: '24px 20px',
-                                    border: '1px solid var(--border)',
-                                    borderRadius: 2,
-                                    transition: 'border-color 0.3s, transform 0.2s',
-                                }}
-                                onMouseEnter={(e) => {
-                                    e.currentTarget.style.borderColor = 'var(--border-hover)';
-                                    e.currentTarget.style.transform = 'translateY(-3px)';
-                                }}
-                                onMouseLeave={(e) => {
-                                    e.currentTarget.style.borderColor = 'var(--border)';
-                                    e.currentTarget.style.transform = 'translateY(0)';
-                                }}
-                            >
-                                <div style={{ fontSize: 20, marginBottom: 12 }}>{f.icon}</div>
-                                <h4 style={{
-                                    fontSize: 14,
-                                    fontWeight: 600,
-                                    color: 'var(--text-primary)',
-                                    marginBottom: 8,
-                                    lineHeight: 1.3,
-                                }}>{f.title}</h4>
-                                <p style={{
-                                    fontFamily: 'var(--font-body)',
-                                    fontSize: 12,
-                                    color: 'var(--text-muted)',
-                                    lineHeight: 1.6,
-                                }}>{f.description}</p>
-                            </div>
-                        ))}
+                    {/* Right — What klyna does */}
+                    <div ref={featuresRef}>
+                        <div style={{
+                            border: '1px solid var(--border)',
+                            borderRadius: 2,
+                            overflow: 'hidden',
+                        }}>
+                            {[
+                                { label: 'Real-Time Monitoring', desc: 'Track latency, error rates, and usage patterns as they happen.' },
+                                { label: 'Deep API Visibility', desc: 'Go beyond uptime — understand reliability metrics and response patterns.' },
+                                { label: 'Early Issue Detection', desc: 'Detect issues before customers are affected. Prevent failures, protect revenue.' },
+                                { label: 'Actionable Insights', desc: 'Turn complex API activity into clear dashboards your team can act on.' },
+                            ].map((item, i) => (
+                                <div
+                                    key={item.label}
+                                    className="feature-card"
+                                    style={{
+                                        padding: '20px 24px',
+                                        borderBottom: i < 3 ? '1px solid var(--border)' : 'none',
+                                        transition: 'background 0.2s',
+                                        display: 'grid',
+                                        gridTemplateColumns: '32px 1fr',
+                                        gap: 16,
+                                        alignItems: 'start',
+                                    }}
+                                    onMouseEnter={(e) => e.currentTarget.style.background = 'var(--bg-2)'}
+                                    onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}
+                                >
+                                    <span style={{
+                                        fontFamily: 'var(--font-mono)',
+                                        fontSize: 11,
+                                        color: 'var(--red)',
+                                        letterSpacing: '0.1em',
+                                        paddingTop: 2,
+                                    }}>0{i + 1}</span>
+                                    <div>
+                                        <div style={{
+                                            fontSize: 14,
+                                            fontWeight: 600,
+                                            color: 'var(--text-primary)',
+                                            marginBottom: 4,
+                                        }}>{item.label}</div>
+                                        <div style={{
+                                            fontSize: 13,
+                                            color: 'var(--text-muted)',
+                                            lineHeight: 1.5,
+                                        }}>{item.desc}</div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 </div>
             </div>
