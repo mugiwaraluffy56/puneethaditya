@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -29,10 +29,74 @@ const projects = [
         live: null,
         featured: true,
     },
+    {
+        title: 'Shell in Rust',
+        description: 'A Unix shell implemented from scratch in Rust — supports command execution, piping, redirection, and built-in commands. Systems programming at its rawest.',
+        tags: ['Rust', 'Systems', 'CLI', 'Unix'],
+        github: 'https://github.com/mugiwaraluffy56/shell-in-rust',
+        live: null,
+        featured: true,
+    },
 ];
+
+// Extract "owner/repo" from a GitHub URL
+function repoSlug(url) {
+    return url.replace('https://github.com/', '');
+}
+
+function useGitHubStats(githubUrl) {
+    const [stats, setStats] = useState(null);
+
+    useEffect(() => {
+        if (!githubUrl) return;
+        const slug = repoSlug(githubUrl);
+        fetch(`https://api.github.com/repos/${slug}`)
+            .then((r) => r.json())
+            .then((data) => {
+                if (!data.message) {
+                    setStats({
+                        stars: data.stargazers_count,
+                        forks: data.forks_count,
+                        issues: data.open_issues_count,
+                        language: data.language,
+                        updatedAt: data.pushed_at,
+                    });
+                }
+            })
+            .catch(() => { /* silently fail — static data still shows */ });
+    }, [githubUrl]);
+
+    return stats;
+}
+
+function timeAgo(iso) {
+    if (!iso) return null;
+    const diff = Date.now() - new Date(iso).getTime();
+    const days = Math.floor(diff / 86400000);
+    if (days === 0) return 'today';
+    if (days === 1) return '1d ago';
+    if (days < 30) return `${days}d ago`;
+    const months = Math.floor(days / 30);
+    if (months < 12) return `${months}mo ago`;
+    return `${Math.floor(months / 12)}y ago`;
+}
+
+const langColors = {
+    JavaScript: '#f1e05a',
+    TypeScript: '#3178c6',
+    Python: '#3572A5',
+    Go: '#00ADD8',
+    Rust: '#dea584',
+    C: '#555599',
+    'C++': '#f34b7d',
+    Shell: '#89e051',
+    HTML: '#e34c26',
+    CSS: '#563d7c',
+};
 
 function ProjectCard({ project, index }) {
     const cardRef = useRef(null);
+    const stats = useGitHubStats(project.github);
 
     useEffect(() => {
         gsap.fromTo(cardRef.current,
@@ -144,6 +208,104 @@ function ProjectCard({ project, index }) {
                 ))}
             </div>
 
+            {/* Live GitHub stats */}
+            {stats && (
+                <div style={{
+                    display: 'flex',
+                    gap: 16,
+                    alignItems: 'center',
+                    marginBottom: 16,
+                    flexWrap: 'wrap',
+                }}>
+                    {/* Language */}
+                    {stats.language && (
+                        <span style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: 5,
+                            fontFamily: 'var(--font-mono)',
+                            fontSize: 11,
+                            color: 'var(--text-muted)',
+                        }}>
+                            <span style={{
+                                width: 8,
+                                height: 8,
+                                borderRadius: '50%',
+                                background: langColors[stats.language] || '#888',
+                                flexShrink: 0,
+                            }} />
+                            {stats.language}
+                        </span>
+                    )}
+
+                    {/* Stars */}
+                    <span style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: 4,
+                        fontFamily: 'var(--font-mono)',
+                        fontSize: 11,
+                        color: 'var(--text-muted)',
+                    }}>
+                        ★ {stats.stars}
+                    </span>
+
+                    {/* Forks */}
+                    <span style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: 4,
+                        fontFamily: 'var(--font-mono)',
+                        fontSize: 11,
+                        color: 'var(--text-muted)',
+                    }}>
+                        ⑂ {stats.forks}
+                    </span>
+
+                    {/* Issues */}
+                    {stats.issues > 0 && (
+                        <span style={{
+                            fontFamily: 'var(--font-mono)',
+                            fontSize: 11,
+                            color: 'var(--text-muted)',
+                        }}>
+                            ◎ {stats.issues} open
+                        </span>
+                    )}
+
+                    {/* Last push */}
+                    {stats.updatedAt && (
+                        <span style={{
+                            fontFamily: 'var(--font-mono)',
+                            fontSize: 11,
+                            color: 'var(--text-muted)',
+                            marginLeft: 'auto',
+                        }}>
+                            {timeAgo(stats.updatedAt)}
+                        </span>
+                    )}
+                </div>
+            )}
+
+            {/* Skeleton while loading */}
+            {!stats && (
+                <div style={{
+                    display: 'flex',
+                    gap: 12,
+                    marginBottom: 16,
+                }}>
+                    {[40, 28, 28].map((w, i) => (
+                        <div key={i} style={{
+                            height: 10,
+                            width: w,
+                            background: 'var(--bg-3)',
+                            borderRadius: 2,
+                            animation: 'shimmer 1.5s ease-in-out infinite',
+                        }} />
+                    ))}
+                </div>
+            )}
+
             {/* Links */}
             <div style={{
                 display: 'flex',
@@ -251,10 +413,8 @@ export default function Projects() {
                         <ProjectCard key={project.title} project={project} index={i} />
                     ))}
                 </div>
-                <div style={{
-                    marginTop: 48,
-                    textAlign: 'center',
-                }}>
+
+                <div style={{ marginTop: 48, textAlign: 'center' }}>
                     <a
                         href="https://github.com/mugiwaraluffy56"
                         target="_blank"
@@ -288,6 +448,13 @@ export default function Projects() {
                     </a>
                 </div>
             </div>
+
+            <style>{`
+                @keyframes shimmer {
+                    0%, 100% { opacity: 0.3; }
+                    50% { opacity: 0.7; }
+                }
+            `}</style>
         </section>
     );
 }
