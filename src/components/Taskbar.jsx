@@ -8,7 +8,8 @@ function Clock() {
 }
 
 const META = {
-  about:        { label: 'About Me',       icon: '/icons/projects.png' },
+  about:        { label: 'About Me',       icon: '/icons/about.png' },
+  resume:       { label: 'Resume.pdf',     icon: '/icons/resume.png' },
   projects:     { label: 'Projects',       icon: '/icons/projects.png' },
   skills:       { label: 'Skills',         icon: '/icons/skills.png' },
   opensource:   { label: 'Open Source',    icon: '/icons/opensource.png' },

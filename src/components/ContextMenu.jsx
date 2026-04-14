@@ -17,7 +17,8 @@ export default function ContextMenu({ x, y, onClose, onOpen }) {
   const top  = Math.min(y, window.innerHeight - menuH - 36); // stay above taskbar
 
   const items = [
-    { label: 'About Me',       key: 'about',      icon: '/icons/projects.png' },
+    { label: 'About Me',       key: 'about',      icon: '/icons/about.png' },
+    { label: 'Resume.pdf',     key: 'resume',     icon: '/icons/resume.png' },
     { label: 'My Projects',    key: 'projects',   icon: '/icons/projects.png' },
     { label: 'Skills',         key: 'skills',     icon: '/icons/skills.png' },
     { label: 'Open Source',    key: 'opensource', icon: '/icons/opensource.png' },

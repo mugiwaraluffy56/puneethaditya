@@ -10,9 +10,12 @@ import BlogsContent from './components/content/BlogsContent.jsx';
 import NeofetchContent from './components/content/NeofetchContent.jsx';
 import InvadersContent from './components/content/InvadersContent.jsx';
 import AboutContent from './components/content/AboutContent.jsx';
+import ResumeContent from './components/content/ResumeContent.jsx';
+import ErrorPopup from './components/ErrorPopup.jsx';
 
 const CONFIGS = {
-  about:      { title: 'About Me',       icon: '/icons/projects.png',   Component: AboutContent,      width: 520, height: 460 },
+  about:      { title: 'About Me',       icon: '/icons/about.png',      Component: AboutContent,      width: 520, height: 460 },
+  resume:     { title: 'Resume.pdf',     icon: '/icons/resume.png',     Component: ResumeContent,     width: 720, height: 560 },
   projects:   { title: 'My Projects',    icon: '/icons/projects.png',   Component: ProjectsContent,   width: 780, height: 520 },
   skills:     { title: 'Skills & Tools', icon: '/icons/skills.png',     Component: SkillsContent,     width: 580, height: 500 },
   opensource: { title: 'Open Source',    icon: '/icons/opensource.png', Component: OpenSourceContent, width: 780, height: 420 },
@@ -84,6 +87,7 @@ export default function App() {
         })}
       </Desktop>
       <Taskbar windows={wins} onWinClick={taskbarClick} onOpen={open} />
+      <ErrorPopup />
     </div>
   );
 }

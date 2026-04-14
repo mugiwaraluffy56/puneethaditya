@@ -2,7 +2,8 @@ import { useState, useCallback } from 'react';
 import ContextMenu from './ContextMenu.jsx';
 
 const ICONS = [
-  { key: 'about',      label: 'About Me',       img: '/icons/projects.png' },
+  { key: 'about',      label: 'About Me',       img: '/icons/about.png' },
+  { key: 'resume',     label: 'Resume.pdf',     img: '/icons/resume.png' },
   { key: 'projects',   label: 'Projects',       img: '/icons/projects.png' },
   { key: 'skills',     label: 'Skills',         img: '/icons/skills.png' },
   { key: 'opensource', label: 'Open Source',    img: '/icons/opensource.png' },

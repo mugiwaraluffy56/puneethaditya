@@ -67,8 +67,10 @@ function runCmd(input, cwd) {
       if (!target._file) return { out: `${cmd}: ${args[0]}: Is a directory`, cwd };
       return { out: target._file, cwd };
     }
+    case 'whoami':
+      return { out: 'puneeth — systems engineer, open source contributor, co-founder of Klyna.io\nGitHub: github.com/mugiwaraluffy56  |  Email: myakampuneeth@gmail.com', cwd };
     case 'help':
-      return { out: 'ls  cd  pwd  cat  open  clear  help', cwd };
+      return { out: 'ls  cd  pwd  cat  open  clear  whoami  help', cwd };
     case 'clear':
       return { out: '__clear__', cwd };
     default:
