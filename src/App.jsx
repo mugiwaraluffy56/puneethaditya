@@ -1,95 +1,77 @@
-import { useEffect, useRef, useState, useCallback } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import Lenis from 'lenis';
-import './App.css';
+import { useState, useCallback } from 'react';
+import Desktop from './components/Desktop.jsx';
+import Taskbar from './components/Taskbar.jsx';
+import Window from './components/Window.jsx';
+import ProjectsContent from './components/content/ProjectsContent.jsx';
+import SkillsContent from './components/content/SkillsContent.jsx';
+import OpenSourceContent from './components/content/OpenSourceContent.jsx';
+import BlogsContent from './components/content/BlogsContent.jsx';
+import NeofetchContent from './components/content/NeofetchContent.jsx';
+import InvadersContent from './components/content/InvadersContent.jsx';
 
-import Preloader from './components/Preloader';
-import CustomCursor from './components/CustomCursor';
-import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import About from './components/About';
-import Skills from './components/Skills';
-import Journey from './components/Journey';
-import Klyna from './components/Klyna';
-import Projects from './components/Projects';
-import OpenSource from './components/OpenSource';
-import Contact from './components/Contact';
+const CONFIGS = {
+  projects:   { title: 'My Projects',   icon: '/icons/projects.png',   Component: ProjectsContent,   width: 700, height: 460 },
+  skills:     { title: 'Skills & Tools', icon: '/icons/skills.png',    Component: SkillsContent,     width: 540, height: 440 },
+  opensource: { title: 'Open Source',   icon: '/icons/opensource.png', Component: OpenSourceContent, width: 640, height: 460 },
+  blogs:      { title: 'Blog',          icon: '/icons/blogs.png',      Component: BlogsContent,       width: 580, height: 440 },
+  terminal:   { title: 'Terminal',      icon: '/icons/terminal.png',   Component: NeofetchContent,    width: 700, height: 460 },
+  invaders:   { title: 'Space Invaders',icon: '/icons/invaders.png',   Component: InvadersContent,    width: 760, height: 600 },
+};
 
-gsap.registerPlugin(ScrollTrigger);
+let uid = 0;
 
-function App() {
-  const lenisRef = useRef(null);
-  const [loading, setLoading] = useState(true);
+export default function App() {
+  const [wins, setWins] = useState(() => {
+    const w = 680, h = 420;
+    const x = Math.max(0, Math.round((window.innerWidth - w) / 2));
+    const y = Math.max(0, Math.round((window.innerHeight - 32 - h) / 2));
+    return [{ id: ++uid, key: 'terminal', x, y, minimized: false, zIndex: 100 }];
+  });
+  const [, setZ] = useState(100);
 
-  // Always start from the top on page load/reload
-  useEffect(() => {
-    window.history.scrollRestoration = 'manual';
-    window.scrollTo(0, 0);
+  const bumpZ = useCallback((fn) => {
+    setZ(prev => { const nz = prev + 1; fn(nz); return nz; });
   }, []);
 
-  const handlePreloaderComplete = useCallback(() => {
-    setLoading(false);
-    setTimeout(() => ScrollTrigger.refresh(), 100);
-  }, []);
-
-  useEffect(() => {
-    if (loading) {
-      document.body.style.overflow = 'hidden';
-      return;
-    }
-
-    document.body.style.overflow = '';
-
-    // Skip Lenis on touch devices — native scroll is better for mobile
-    const isTouch =
-      'ontouchstart' in window ||
-      navigator.maxTouchPoints > 0 ||
-      window.matchMedia('(pointer: coarse)').matches;
-
-    if (isTouch) return;
-
-    // Initialize Lenis smooth scroll
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      orientation: 'vertical',
-      smoothWheel: true,
+  const open = useCallback((key) => {
+    setWins(prev => {
+      const existing = prev.find(w => w.key === key);
+      if (existing) {
+        bumpZ(nz => setWins(ws => ws.map(w => w.id === existing.id ? { ...w, minimized: false, zIndex: nz } : w)));
+        return prev;
+      }
+      const id = ++uid;
+      bumpZ(nz => setWins(ws => [...ws.filter(w => w.id !== id), { id, key, x: 60 + (id % 5) * 30, y: 40 + (id % 4) * 20, minimized: false, zIndex: nz }]));
+      return prev;
     });
+  }, [bumpZ]);
 
-    lenisRef.current = lenis;
+  const close = useCallback((id) => setWins(ws => ws.filter(w => w.id !== id)), []);
+  const minimize = useCallback((id) => setWins(ws => ws.map(w => w.id === id ? { ...w, minimized: true } : w)), []);
+  const focus = useCallback((id) => bumpZ(nz => setWins(ws => ws.map(w => w.id === id ? { ...w, zIndex: nz } : w))), [bumpZ]);
 
-    lenis.on('scroll', ScrollTrigger.update);
-
-    gsap.ticker.add((time) => {
-      lenis.raf(time * 1000);
-    });
-
-    gsap.ticker.lagSmoothing(0);
-
-    return () => {
-      lenis.destroy();
-      gsap.ticker.remove(lenis.raf);
-    };
-  }, [loading]);
+  const taskbarClick = useCallback((id, minimized) => {
+    if (minimized) bumpZ(nz => setWins(ws => ws.map(w => w.id === id ? { ...w, minimized: false, zIndex: nz } : w)));
+    else focus(id);
+  }, [bumpZ, focus]);
 
   return (
-    <>
-      {loading && <Preloader onComplete={handlePreloaderComplete} />}
-      <CustomCursor />
-      <Navbar />
-      <main>
-        <Hero />
-        <About />
-        <Skills />
-        <Journey />
-        <Klyna />
-        <Projects />
-        <OpenSource />
-        <Contact />
-      </main>
-    </>
+    <div style={{ width: '100vw', height: '100vh', overflow: 'hidden', position: 'relative' }}>
+      <Desktop onOpen={open}>
+        {wins.map(win => {
+          if (win.minimized) return null;
+          const { Component, title, icon, width, height } = CONFIGS[win.key] ?? {};
+          if (!Component) return null;
+          return (
+            <Window key={win.id} id={win.id} title={title} icon={<img src={icon} width={16} height={16} style={{imageRendering:'pixelated'}} alt="" />}
+              initialX={win.x} initialY={win.y} width={width} height={height}
+              zIndex={win.zIndex} onClose={close} onMinimize={minimize} onFocus={focus}>
+              <Component />
+            </Window>
+          );
+        })}
+      </Desktop>
+      <Taskbar windows={wins} onWinClick={taskbarClick} onOpen={open} />
+    </div>
   );
 }
-
-export default App;
