@@ -36,10 +36,28 @@ export default function BlogsContent() {
           border: '1px solid #808080',
           padding: '6px 8px',
           marginBottom: 10,
-          fontSize: 10,
+          fontSize: 11,
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
         }}
       >
-        ✏️ Blog posts are coming soon — drafts in progress!
+        <span>Blog posts are coming soon — drafts in progress!</span>
+        <a
+          href="https://puneethblog.vercel.app"
+          target="_blank"
+          rel="noreferrer"
+          style={{
+            color: '#000080',
+            fontWeight: 'bold',
+            fontSize: 11,
+            textDecoration: 'underline',
+            whiteSpace: 'nowrap',
+            marginLeft: 12,
+          }}
+        >
+          Check out more blogs »
+        </a>
       </div>
 
       {posts.map((post, i) => (
@@ -57,7 +75,7 @@ export default function BlogsContent() {
           onMouseLeave={(e) => { e.currentTarget.style.background = '#ffffff'; }}
         >
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 4 }}>
-            <span style={{ fontWeight: 'bold', fontSize: 12, flex: 1 }}>📝 {post.title}</span>
+            <span style={{ fontWeight: 'bold', fontSize: 12, flex: 1 }}>{post.title}</span>
             <span
               style={{
                 ...statusStyle[post.status],

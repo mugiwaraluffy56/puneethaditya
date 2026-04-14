@@ -22,8 +22,7 @@ export default function Desktop({ onOpen, children }) {
           <div
             key={ic.key}
             className={`desktop-icon${selected === ic.key ? ' selected' : ''}`}
-            onClick={(e) => { e.stopPropagation(); setSelected(ic.key); }}
-            onDoubleClick={(e) => { e.stopPropagation(); setSelected(null); onOpen(ic.key); }}
+            onClick={(e) => { e.stopPropagation(); setSelected(ic.key); onOpen(ic.key); }}
           >
             <img src={ic.img} alt={ic.label} style={{ width: 32, height: 32, imageRendering: 'pixelated' }} />
             <span className="icon-label">{ic.label}</span>

@@ -24,8 +24,7 @@ export default function Taskbar({ windows, onWinClick, onOpen }) {
       {menuOpen && <StartMenu onOpen={(k) => { onOpen(k); setMenuOpen(false); }} onClose={() => setMenuOpen(false)} />}
       <div className="taskbar">
         <button className={`start-btn${menuOpen ? ' active' : ''}`} onClick={() => setMenuOpen(v => !v)}>
-          <img src="https://win98icons.alexmeub.com/icons/png/windows_taskbar-1.png" width={16} height={16}
-            onError={e => { e.target.style.display='none'; }} alt="" />
+          <img src="/icons/windows.png" width={16} height={16} style={{ imageRendering: 'pixelated' }} alt="" />
           Start
         </button>
         <div className="taskbar-sep" />

@@ -74,7 +74,7 @@ export default function ProjectsContent() {
           onMouseLeave={(e) => { e.currentTarget.style.background = i % 2 === 0 ? '#ffffff' : '#f0f0f0'; e.currentTarget.style.color = '#000000'; }}
         >
           <span style={{ fontWeight: 'bold', display: 'flex', alignItems: 'center', gap: 4 }}>
-            📁 {p.name}
+            {p.name}
           </span>
           <span style={{ fontSize: 10, lineHeight: 1.4 }}>{p.desc}</span>
           <span style={{ fontSize: 9 }}>{p.tags.join(', ')}</span>

@@ -35,6 +35,11 @@
         user-select: none;
         -webkit-user-select: none;
       }
+      /* keyboard-only fullscreen mode */
+      html, body { width: 100vw; height: 100vh; margin: 0; padding: 0 !important; overflow: hidden; background: #000; }
+      #play, #more { display: none !important; }
+      div { display: none !important; }
+      canvas { display: block !important; image-rendering: pixelated; }
     </style>
     <script>
       'use strict'
@@ -292,14 +297,23 @@
 
       // Resize canvas and buttons on browser resize.
       function resizeUI () {
-        document.body.style.padding = PADDING + 'px'
-        if (window.innerWidth > window.innerHeight) {
-          resizeElements('inline-block', [5], 40, 10)
-          log('resized UI for wide screen')
+        buttonsPlay.style.display = 'none'
+        buttonsMore.style.display = 'none'
+        document.body.style.padding = '0'
+        // Fit canvas inside iframe maintaining 4:3 aspect ratio
+        const W = window.innerWidth
+        const H = window.innerHeight
+        let cw, ch
+        if (W / H > 4 / 3) {
+          ch = H; cw = Math.round(H * 4 / 3)
         } else {
-          resizeElements('block', [2, 3], 60, 30)
-          log('resized UI for tall screen')
+          cw = W; ch = Math.round(W * 3 / 4)
         }
+        canvas.style.width  = cw + 'px'
+        canvas.style.height = ch + 'px'
+        canvas.style.position = 'absolute'
+        canvas.style.left = Math.round((W - cw) / 2) + 'px'
+        canvas.style.top  = Math.round((H - ch) / 2) + 'px'
       }
 
       function resizeElements (buttonsDivStyle, buttonGroups,

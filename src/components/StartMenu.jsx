@@ -30,7 +30,8 @@ export default function StartMenu({ onOpen, onClose }) {
         ))}
         <div className="start-menu-divider" />
         <div className="start-menu-item" onClick={onClose}>
-          🔴 Shut Down...
+          <img src="/icons/shutdown.png" alt="" width={16} height={16} style={{ imageRendering: 'pixelated' }} />
+          Shut Down...
         </div>
       </div>
     </div>
