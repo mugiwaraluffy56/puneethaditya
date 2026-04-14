@@ -2,25 +2,29 @@ import { useState, useCallback, useRef } from 'react';
 import Desktop from './components/Desktop.jsx';
 import Taskbar from './components/Taskbar.jsx';
 import Window from './components/Window.jsx';
+import BootScreen from './components/BootScreen.jsx';
 import ProjectsContent from './components/content/ProjectsContent.jsx';
 import SkillsContent from './components/content/SkillsContent.jsx';
 import OpenSourceContent from './components/content/OpenSourceContent.jsx';
 import BlogsContent from './components/content/BlogsContent.jsx';
 import NeofetchContent from './components/content/NeofetchContent.jsx';
 import InvadersContent from './components/content/InvadersContent.jsx';
+import AboutContent from './components/content/AboutContent.jsx';
 
 const CONFIGS = {
-  projects:   { title: 'My Projects',    icon: '/icons/projects.png',   Component: ProjectsContent,   width: 700, height: 460 },
-  skills:     { title: 'Skills & Tools', icon: '/icons/skills.png',     Component: SkillsContent,     width: 540, height: 440 },
-  opensource: { title: 'Open Source',    icon: '/icons/opensource.png', Component: OpenSourceContent, width: 640, height: 460 },
-  blogs:      { title: 'Blog',           icon: '/icons/blogs.png',      Component: BlogsContent,      width: 580, height: 440 },
-  terminal:   { title: 'Terminal',       icon: '/icons/terminal.png',   Component: NeofetchContent,   width: 700, height: 460 },
+  about:      { title: 'About Me',       icon: '/icons/projects.png',   Component: AboutContent,      width: 520, height: 460 },
+  projects:   { title: 'My Projects',    icon: '/icons/projects.png',   Component: ProjectsContent,   width: 780, height: 520 },
+  skills:     { title: 'Skills & Tools', icon: '/icons/skills.png',     Component: SkillsContent,     width: 580, height: 500 },
+  opensource: { title: 'Open Source',    icon: '/icons/opensource.png', Component: OpenSourceContent, width: 780, height: 420 },
+  blogs:      { title: 'Blog',           icon: '/icons/blogs.png',      Component: BlogsContent,      width: 620, height: 460 },
+  terminal:   { title: 'Terminal',       icon: '/icons/terminal.png',   Component: NeofetchContent,   width: 700, height: 540 },
   invaders:   { title: 'Space Invaders', icon: '/icons/invaders.png',   Component: InvadersContent,   width: 800, height: 660 },
 };
 
 let uid = 0;
 
 export default function App() {
+  const [booted, setBooted] = useState(false);
   const zRef = useRef(100);
 
   const [wins, setWins] = useState(() => {
@@ -63,6 +67,7 @@ export default function App() {
 
   return (
     <div style={{ width: '100vw', height: '100vh', overflow: 'hidden', position: 'relative' }}>
+      {!booted && <BootScreen onDone={() => setBooted(true)} />}
       <Desktop onOpen={open}>
         {wins.map(win => {
           if (win.minimized) return null;

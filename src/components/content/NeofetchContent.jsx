@@ -14,7 +14,7 @@ const FS = {
       'ml.txt':        { _file: 'PyTorch 88%  scikit-learn 82%  HuggingFace 78%  Dora 70%' },
       'tools.txt':     { _file: 'Git 90%  Docker 74%  Linux 85%  VSCode 88%' },
     },
-    'about.txt':   { _file: 'Puneeth Aditya — builder, researcher, open-source contributor.' },
+    'about.txt':   { _file: 'Puneeth Aditya builder, researcher, open-source contributor.' },
     'contact.txt': { _file: 'GitHub: github.com/mugiwaraluffy56  |  myakampuneeth@gmail.com' },
   },
 };
@@ -79,21 +79,19 @@ function runCmd(input, cwd) {
 /* ── neofetch data ───────────────────────────────────────── */
 const INFO = [
   ['OS',        'Portfolio v2.0 x86_64'],
-  ['Host',      'puneeth.dev'],
+  ['Host',      'puneethaditya.vercel.app'],
   ['Kernel',    'React 19.0 + Vite 7'],
-  ['Uptime',    '3 years, always building'],
-  ['Packages',  '10+ shipped projects'],
+  ['Uptime',    '1st-year CS student, always building'],
+  ['Focus',     'Systems · Compilers · Open Source'],
   ['Shell',     'zsh 5.9'],
-  ['Resolution','1920x1080'],
-  ['WM',        'Win95Desktop'],
-  ['WM Theme',  'Classic Silver'],
-  ['Theme',     'Win95 [Gray]'],
-  ['Terminal',  'Win95Terminal'],
-  ['CPU',       'Apple M-Series @ 3.2GHz'],
-  ['GPU',       'Apple Integrated GPU'],
-  ['Languages', 'Python · Rust · JS/TS · C++'],
-  ['ML',        'PyTorch · HuggingFace · Dora'],
+  ['Languages', 'Rust · Go · C++ · Python · TS'],
+  ['Systems',   'LLVM · SIMD · Async Rust · Wasm'],
+  ['ML',        'PyTorch · RAG · LLM APIs · Qdrant'],
+  ['Infra',     'PostgreSQL · Redis · Docker · K8s'],
+  ['Co-founder','Klyna.io'],
+  ['Maintainer','mohu-org'],
   ['GitHub',    'github.com/mugiwaraluffy56'],
+  ['LinkedIn',  'linkedin.com/in/puneethaditya'],
   ['Email',     'myakampuneeth@gmail.com'],
   ['Memory',    '∞ MiB / ∞ MiB'],
 ];
@@ -127,6 +125,7 @@ export default function NeofetchContent() {
     setCwd(nextCwd);
     if (cmd) setCmdHistory(h => [cmd, ...h]);
     setInput(''); setHistIdx(-1);
+    setTimeout(() => inputRef.current?.focus(), 0);
   };
 
   const onKeyDown = (e) => {
@@ -149,14 +148,14 @@ export default function NeofetchContent() {
         background: '#1e1e2e', color: '#cdd6f4',
         fontFamily: '"Courier New", Courier, monospace',
         fontSize: '13px', lineHeight: '1.6',
-        padding: '16px 20px', height: '100%', margin: '-6px',
-        boxSizing: 'border-box', overflowY: 'auto',
-        display: 'flex', gap: 28, alignItems: 'flex-start',
+        margin: '-6px', height: 'calc(100% + 12px)',
+        boxSizing: 'border-box', overflow: 'hidden',
+        display: 'flex', gap: 0,
       }}
       onClick={() => inputRef.current?.focus()}
     >
       {/* ── left: avatar + swatches ── */}
-      <div style={{ flexShrink: 0 }}>
+      <div style={{ flexShrink: 0, padding: '16px 0 16px 20px', overflowY: 'auto' }}>
         <img src="/avatar.png" alt="puneeth"
           style={{ width: 200, height: 200, display: 'block', border: '2px solid #313244', borderRadius: 4 }} />
         <div style={{ display: 'flex', marginTop: 10 }}>
@@ -167,8 +166,8 @@ export default function NeofetchContent() {
         </div>
       </div>
 
-      {/* ── right: info + shell ── */}
-      <div style={{ flex: 1, minWidth: 0 }}>
+      {/* right: info + shell - scrolls independently */}
+      <div style={{ flex: 1, minWidth: 0, overflowY: 'auto', padding: '16px 20px 16px 28px', height: '100%', boxSizing: 'border-box' }}>
         {/* username */}
         <div style={{ marginBottom: 2 }}>
           <span style={{ color: '#89dceb', fontWeight: 'bold' }}>puneeth</span>
@@ -201,10 +200,11 @@ export default function NeofetchContent() {
                   <span style={{ color: '#a6e3a1' }}>puneeth</span>
                   <span style={{ color: '#6c7086' }}>@portfolio:</span>
                   <span style={{ color: '#89b4fa' }}>{path}</span>
-                  <span style={{ color: '#cba6f7' }}> ❯ </span>
+                  <span style={{ color: '#cba6f7', margin: '0 6px' }}>❯</span>
                   <span style={{ color: '#cdd6f4' }}>{cmd}</span>
                 </div>
               );
+
             }
             if (line.startsWith('\x1bout:')) {
               const text = line.slice(5);
@@ -227,11 +227,11 @@ export default function NeofetchContent() {
         </div>
 
         {/* prompt input */}
-        <div style={{ display: 'flex', alignItems: 'center', marginTop: 4, paddingLeft: 8, gap: 4 }}>
+        <div style={{ display: 'flex', alignItems: 'center', marginTop: 4 }}>
           <span style={{ color: '#a6e3a1', whiteSpace: 'nowrap' }}>puneeth</span>
-          <span style={{ color: '#6c7086' }}>@portfolio:</span>
-          <span style={{ color: '#89b4fa' }}>{fmtPath(cwd)}</span>
-          <span style={{ color: '#cba6f7' }}> ❯ </span>
+          <span style={{ color: '#6c7086', whiteSpace: 'nowrap' }}>@portfolio:</span>
+          <span style={{ color: '#89b4fa', whiteSpace: 'nowrap' }}>{fmtPath(cwd)}</span>
+          <span style={{ color: '#cba6f7', whiteSpace: 'nowrap', marginLeft: 4, marginRight: 6 }}>❯</span>
           <input
             ref={inputRef}
             value={input}

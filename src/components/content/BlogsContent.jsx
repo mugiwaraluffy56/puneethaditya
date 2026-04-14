@@ -1,118 +1,117 @@
 const posts = [
   {
-    title: 'Building a Git Server in Rust from Scratch',
-    date: '2024-12-10',
-    tags: ['Rust', 'Git', 'Protocols'],
-    desc: 'A deep dive into the Git pack-file protocol — how push and pull actually work at the wire level, and how I implemented it in pure Rust.',
+    title: 'Building mohu-org: NumPy in Pure Rust',
+    date: '2025-03-15',
+    tags: ['Rust', 'PyO3', 'SIMD', 'Linear Algebra'],
+    desc: 'Why I started building a NumPy replacement natively in Rust instead of wrapping it. Arrow-native storage, SIMD compute kernels, and zero-copy Python bindings via PyO3.',
     status: 'draft',
   },
   {
-    title: 'GSoC 2024: What I Learned Contributing to Mermaid.js',
-    date: '2024-09-01',
-    tags: ['GSoC', 'Open Source', 'JavaScript'],
-    desc: 'Recap of my Google Summer of Code journey — navigating a large JS codebase, communicating with maintainers, and shipping real features.',
+    title: '21 PRs into mofa-org: What I Learned About AI Agent Frameworks',
+    date: '2025-02-20',
+    tags: ['Rust', 'AI Agents', 'RAG', 'Open Source'],
+    desc: 'A recap of contributing kernel traits, AgentBuilder, RAG pipeline, and a Cognitive Gateway prototype to the mofa-org Rust AI framework. What went well, what was hard.',
     status: 'draft',
   },
   {
-    title: 'Why I Switched My ML Workflows to Dora',
-    date: '2025-01-20',
-    tags: ['AI', 'Rust', 'Python', 'Agents'],
-    desc: 'Dora-rs is a Rust-based data-flow runtime for robotics and AI pipelines. Here is why it changed how I think about agent orchestration.',
+    title: 'LLVM Internals: Writing Compiler Passes from Scratch',
+    date: '2025-01-10',
+    tags: ['LLVM', 'Compilers', 'C++', 'IR'],
+    desc: '11 merged PRs into LLVM taught me more about compilers than any course. This is a walkthrough of the IR tooling and TableGen work, and how to actually navigate the LLVM codebase.',
+    status: 'draft',
+  },
+  {
+    title: 'Klyna.io: Building API Monitoring That Actually Works',
+    date: '2025-04-01',
+    tags: ['Rust', 'PostgreSQL', 'Redis', 'Startups'],
+    desc: 'Why my co-founder and I started Klyna. API monitoring tools were either too heavy or told you nothing useful. So we built the backend in Rust with PostgreSQL and Redis from scratch.',
     status: 'draft',
   },
 ];
 
 const statusStyle = {
-  draft: { background: '#808080', color: '#ffffff' },
-  published: { background: '#008000', color: '#ffffff' },
+  draft:     { background: '#808080', color: '#ffffff' },
+  published: { background: '#006400', color: '#ffffff' },
 };
+
+const ROW_HOVER = '#f0f0ff';
 
 export default function BlogsContent() {
   return (
-    <div style={{ fontFamily: '"MS Sans Serif", Arial, sans-serif', fontSize: 11 }}>
-      <div
-        style={{
-          background: '#ffffc0',
-          border: '1px solid #808080',
-          padding: '6px 8px',
-          marginBottom: 10,
-          fontSize: 11,
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-        }}
-      >
-        <span>Blog posts are coming soon — drafts in progress!</span>
+    <div style={{ fontFamily: '"MS Sans Serif", Arial, sans-serif', fontSize: 13 }}>
+      <div style={{
+        background: '#ffffc0',
+        border: '1px solid #808080',
+        padding: '6px 10px',
+        marginBottom: 10,
+        fontSize: 12,
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+      }}>
+        <span>Drafts in progress. Full posts published on the blog.</span>
         <a
           href="https://puneethblog.vercel.app"
           target="_blank"
           rel="noreferrer"
-          style={{
-            color: '#000080',
-            fontWeight: 'bold',
-            fontSize: 11,
-            textDecoration: 'underline',
-            whiteSpace: 'nowrap',
-            marginLeft: 12,
-          }}
+          style={{ color: '#000080', fontWeight: 'bold', fontSize: 12, textDecoration: 'underline', whiteSpace: 'nowrap', marginLeft: 12 }}
         >
           Check out more blogs »
         </a>
       </div>
 
       {posts.map((post, i) => (
-        <div
+        <a
           key={i}
-          style={{
-            background: '#ffffff',
-            border: '1px solid',
-            borderColor: '#808080 #ffffff #ffffff #808080',
-            padding: 8,
-            marginBottom: 8,
-            cursor: 'default',
-          }}
-          onMouseEnter={(e) => { e.currentTarget.style.background = '#f0f0ff'; }}
-          onMouseLeave={(e) => { e.currentTarget.style.background = '#ffffff'; }}
+          href="https://puneethblog.vercel.app"
+          target="_blank"
+          rel="noreferrer"
+          style={{ textDecoration: 'none', color: 'inherit' }}
         >
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 4 }}>
-            <span style={{ fontWeight: 'bold', fontSize: 12, flex: 1 }}>{post.title}</span>
-            <span
-              style={{
+          <div
+            style={{
+              background: '#ffffff',
+              border: '1px solid',
+              borderColor: '#808080 #e0e0e0 #e0e0e0 #808080',
+              padding: '8px 10px',
+              marginBottom: 8,
+              cursor: 'pointer',
+            }}
+            onMouseEnter={e => e.currentTarget.style.background = ROW_HOVER}
+            onMouseLeave={e => e.currentTarget.style.background = '#ffffff'}
+          >
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 4 }}>
+              <span style={{ fontWeight: 'bold', fontSize: 13, flex: 1 }}>{post.title}</span>
+              <span style={{
                 ...statusStyle[post.status],
-                padding: '1px 6px',
-                fontSize: 9,
-                marginLeft: 8,
-                whiteSpace: 'nowrap',
-                flexShrink: 0,
-              }}
-            >
-              {post.status.toUpperCase()}
-            </span>
-          </div>
-
-          <div style={{ fontSize: 10, color: '#808080', marginBottom: 4 }}>{post.date}</div>
-
-          <p style={{ fontSize: 10, lineHeight: 1.5, color: '#000000', marginBottom: 6 }}>
-            {post.desc}
-          </p>
-
-          <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap' }}>
-            {post.tags.map((tag) => (
-              <span
-                key={tag}
-                style={{
-                  background: '#c0c0c0',
-                  border: '1px solid #808080',
-                  padding: '0 4px',
-                  fontSize: 9,
-                }}
-              >
-                {tag}
+                padding: '1px 6px', fontSize: 10, marginLeft: 10,
+                whiteSpace: 'nowrap', flexShrink: 0,
+              }}>
+                {post.status.toUpperCase()}
               </span>
-            ))}
+            </div>
+
+            <div style={{ fontSize: 11, color: '#808080', marginBottom: 5 }}>{post.date}</div>
+
+            <p style={{ fontSize: 12, lineHeight: 1.6, color: '#222', marginBottom: 7 }}>
+              {post.desc}
+            </p>
+
+            <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap' }}>
+              {post.tags.map(tag => (
+                <span key={tag} style={{
+                  background: '#c0c0c0', border: '1px solid #808080',
+                  padding: '0 5px', fontSize: 10,
+                }}>{tag}</span>
+              ))}
+            </div>
           </div>
-        </div>
+        </a>
       ))}
+
+      <div style={{ padding: '4px 2px', fontSize: 11, color: '#808080' }}>
+        {posts.length} posts click any to read on puneethblog.vercel.app
+      </div>
     </div>
   );
 }

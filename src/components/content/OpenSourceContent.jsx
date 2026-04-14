@@ -1,92 +1,105 @@
 const contributions = [
   {
-    org: 'Google Summer of Code 2024',
-    project: 'Mermaid.js',
+    org: 'mofa-org/mofa',
+    role: 'Collaborator',
+    prs: 21,
+    url: 'https://github.com/mofa-org/mofa',
+    desc: 'Kernel traits (GatewayRoute, AuthProvider, StructuredOutput, VectorStore), foundation implementations (AgentBuilder, RAG pipeline, rate limiter, built-in tools), 10 gateway phases, working prototype on demo/gateway-live-demo.',
+    tags: ['Rust', 'AI Agents', 'RAG', 'LLM'],
+    year: '2025',
+  },
+  {
+    org: 'LLVM',
     role: 'Contributor',
-    desc: 'Implemented new diagram rendering features and improved existing chart types. Contributed layout engine improvements for complex graphs.',
-    link: 'https://summerofcode.withgoogle.com',
-    tags: ['JavaScript', 'Diagrams', 'Open Source'],
+    prs: 11,
+    url: 'https://github.com/llvm/llvm-project',
+    desc: 'Compiler passes and IR tooling across the LLVM core codebase. TableGen improvements and MLIR work.',
+    tags: ['C++', 'Compilers', 'IR', 'MLIR'],
+    year: '2024-25',
+  },
+  {
+    org: 'CNCF Inspektor Gadget',
+    role: 'Contributor',
+    prs: 3,
+    url: 'https://github.com/inspektor-gadget/inspektor-gadget',
+    desc: 'eBPF-based observability tooling. First CNCF contribution.',
+    tags: ['Go', 'eBPF', 'Observability', 'CNCF'],
     year: '2024',
   },
   {
-    org: 'Dora-RS',
-    project: 'MOFA Framework',
+    org: 'erof-utils',
     role: 'Contributor',
-    desc: 'Built multi-agent orchestration tooling on top of the Dora robotics/AI framework for composing agent workflows.',
-    link: 'https://github.com/dora-rs/dora',
-    tags: ['Rust', 'Python', 'AI', 'Robotics'],
-    year: '2024',
-  },
-  {
-    org: 'Personal Projects',
-    project: 'GitDaemon',
-    role: 'Author',
-    desc: 'Open-source lightweight Git server in Rust. Full pack-file protocol implementation for push/pull operations.',
-    link: 'https://github.com/puneeth-aditya/gitdaemon',
-    tags: ['Rust', 'Git Protocol', 'Networking'],
+    prs: 1,
+    url: 'https://github.com/erof-utils',
+    desc: 'Utility library patch.',
+    tags: ['Rust'],
     year: '2024',
   },
 ];
 
+const prBadge = (n) => {
+  if (n >= 10) return { bg: '#000080', fg: '#fff' };
+  if (n >= 3)  return { bg: '#006400', fg: '#fff' };
+  return { bg: '#808080', fg: '#fff' };
+};
+
+const ROW_HOVER = '#dde8ff';
+
 export default function OpenSourceContent() {
   return (
-    <div style={{ fontFamily: '"MS Sans Serif", Arial, sans-serif', fontSize: 11 }}>
-      <div style={{ marginBottom: 8, fontSize: 10, color: '#808080' }}>
-        Open source contributions and projects
+    <div style={{ fontFamily: '"MS Sans Serif", Arial, sans-serif', fontSize: 13 }}>
+      {/* header */}
+      <div style={{
+        display: 'grid', gridTemplateColumns: '180px 1fr 80px',
+        background: '#c0c0c0', borderBottom: '2px solid #808080',
+        padding: '3px 6px', fontWeight: 'bold', fontSize: 12,
+      }}>
+        <span>Organisation</span><span>Contributions</span><span style={{ textAlign: 'center' }}>PRs</span>
       </div>
 
       {contributions.map((c, i) => (
-        <div
-          key={i}
-          style={{
-            background: '#ffffff',
-            border: '1px solid',
-            borderColor: '#808080 #ffffff #ffffff #808080',
-            padding: 8,
-            marginBottom: 8,
-          }}
+        <a
+          key={c.org}
+          href={c.url}
+          target="_blank"
+          rel="noreferrer"
+          style={{ textDecoration: 'none', color: 'inherit' }}
         >
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 4 }}>
+          <div
+            style={{
+              display: 'grid', gridTemplateColumns: '180px 1fr 80px',
+              padding: '8px 6px', alignItems: 'start', gap: 4,
+              background: i % 2 === 0 ? '#ffffff' : '#f5f5f5',
+              borderBottom: '1px solid #e0e0e0',
+            }}
+            onMouseEnter={e => e.currentTarget.style.background = ROW_HOVER}
+            onMouseLeave={e => e.currentTarget.style.background = i % 2 === 0 ? '#ffffff' : '#f5f5f5'}
+          >
             <div>
-              <span style={{ fontWeight: 'bold', fontSize: 12 }}>{c.project}</span>
-              <span style={{ color: '#808080', marginLeft: 6, fontSize: 10 }}>— {c.org}</span>
+              <div style={{ fontWeight: 'bold', fontSize: 13 }}>{c.org}</div>
+              <div style={{ fontSize: 10, color: '#808080', marginTop: 2 }}>{c.role} · {c.year}</div>
+              <div style={{ display: 'flex', gap: 3, flexWrap: 'wrap', marginTop: 4 }}>
+                {c.tags.map(t => (
+                  <span key={t} style={{ background: '#c0c0c0', border: '1px solid #808080', padding: '0 4px', fontSize: 9 }}>{t}</span>
+                ))}
+              </div>
             </div>
-            <div style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
-              <span
-                style={{
-                  background: '#000080',
-                  color: '#ffffff',
-                  padding: '1px 6px',
-                  fontSize: 10,
-                }}
-              >
-                {c.role}
-              </span>
-              <span style={{ color: '#808080', fontSize: 10 }}>{c.year}</span>
+            <span style={{ fontSize: 11, lineHeight: 1.6, color: '#222' }}>{c.desc}</span>
+            <div style={{ textAlign: 'center' }}>
+              <span style={{
+                ...prBadge(c.prs),
+                background: prBadge(c.prs).bg, color: prBadge(c.prs).fg,
+                padding: '2px 8px', fontWeight: 'bold', fontSize: 12,
+                display: 'inline-block',
+              }}>{c.prs} merged</span>
             </div>
           </div>
-
-          <p style={{ fontSize: 10, lineHeight: 1.5, marginBottom: 6, color: '#000000' }}>
-            {c.desc}
-          </p>
-
-          <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap' }}>
-            {c.tags.map((tag) => (
-              <span
-                key={tag}
-                style={{
-                  background: '#c0c0c0',
-                  border: '1px solid #808080',
-                  padding: '0 4px',
-                  fontSize: 9,
-                }}
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-        </div>
+        </a>
       ))}
+
+      <div style={{ padding: '6px 6px', fontSize: 11, color: '#808080', borderTop: '1px solid #ccc' }}>
+        {contributions.reduce((s, c) => s + c.prs, 0)} total merged PRs click any row to open on GitHub
+      </div>
     </div>
   );
 }

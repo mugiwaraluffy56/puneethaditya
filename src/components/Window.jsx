@@ -25,7 +25,7 @@ export default function Window({ id, title, icon, children, initialX, initialY, 
   }, []);
 
   return (
-    <div className="win" style={{ left: pos.x, top: pos.y, width, zIndex }} onMouseDown={() => onFocus(id)}>
+    <div className="win" style={{ left: pos.x, top: pos.y, width, height, zIndex }} onMouseDown={() => onFocus(id)}>
       <div className="win-titlebar" onMouseDown={onTitleDown}>
         <div className="win-title">{icon && <span>{icon}</span>}{title}</div>
         <div className="win-btns">
@@ -33,7 +33,7 @@ export default function Window({ id, title, icon, children, initialX, initialY, 
           <button className="win-btn" onClick={(e) => { e.stopPropagation(); onClose(id); }}>✕</button>
         </div>
       </div>
-      <div className="win-body" style={{ height: height - 30 }}>{children}</div>
+      <div className="win-body">{children}</div>
     </div>
   );
 }

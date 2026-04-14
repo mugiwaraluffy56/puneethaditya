@@ -1,16 +1,38 @@
-# React + Vite
+# puneethaditya.vercel.app
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Windows 95-style portfolio built in React 19 + Vite 7. No UI libraries — pure CSS Win95 aesthetics.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Boot screen** — Win95 startup animation with progress bar before the desktop loads
+- **Draggable windows** — title-bar drag, z-index focus management, minimize/close
+- **Taskbar** — live window buttons, Start menu with all apps
+- **Right-click context menu** — Refresh, About Me, and quick-launch shortcuts on the desktop
+- **Win95 cursors** — custom `.cur` cursor pack across all states (default, pointer, text, move)
+- **Win98 icon pack** — pixel-perfect PNG icons throughout
 
-## React Compiler
+## Windows / Apps
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+| Window | Description |
+|---|---|
+| Terminal | neofetch profile + interactive shell (`ls`, `cd`, `cat`, `pwd`, `clear`, `help`) |
+| My Projects | 7 real projects with stack, status, GitHub links |
+| Skills & Tools | Languages, Systems, ML/AI, Infra grouped with proficiency |
+| Open Source | mofa-org (21 PRs), LLVM (11 PRs), CNCF, erof-utils — PR count color-coded |
+| Blog | 4 draft posts linking to puneethblog.vercel.app |
+| About Me | Bio, education, Klyna.io co-founder blurb, hire CTA |
+| Space Invaders | Keyboard-controlled game, letterboxed to fill window |
 
-## Expanding the ESLint configuration
+## Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- React 19, Vite 7
+- Zero external UI libraries
+- CSS Win95 double-border trick (`border-color: #fff #404040 #404040 #fff`)
+- Virtual filesystem in NeofetchContent for interactive terminal
+
+## Run locally
+
+```bash
+npm install
+npm run dev
+```

@@ -6,6 +6,7 @@ html, body, #root {
   font-size: 13px;
   zoom: 1;
   cursor: url('/cursors/arrow.cur'), default;
+  background: #000000;
 }
 
 /* pointer — every clickable element */
