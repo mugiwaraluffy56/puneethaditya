@@ -22,10 +22,10 @@ export default function AboutContent() {
         <div>
           <div style={{ fontWeight: 'bold', fontSize: 15 }}>Puneeth Aditya Myakam</div>
           <div style={{ color: '#444', fontSize: 12, marginTop: 2 }}>
-            Systems Engineer · Open Source Contributor · Co-founder
+            Deep in learning mode · Systems-first engineer · Open source contributor
           </div>
           <div style={{ marginTop: 6, display: 'flex', gap: 6, flexWrap: 'wrap' }}>
-            {['Rust', 'Go', 'Python', 'C++', 'LLVM', 'React'].map(t => (
+            {['Rust', 'Kubernetes', 'eBPF', 'LLVM', 'ML + Infra', 'React'].map(t => (
               <span key={t} style={{
                 background: '#c0c0c0', border: '1px solid #808080',
                 padding: '0 5px', fontSize: 10,
@@ -44,17 +44,14 @@ export default function AboutContent() {
         border: '2px solid', borderColor: '#808080 #ffffff #ffffff #808080',
         padding: '8px 10px', fontSize: 12, lineHeight: 1.7,
       }}>
-        I'm a first-year CS student obsessed with low-level systems, compilers, and open source.
-        I've contributed{' '}
-        <strong>21 PRs to mofa-org</strong> (Rust AI agent framework),{' '}
-        <strong>11 PRs to LLVM</strong> (compiler passes, TableGen, MLIR), and{' '}
-        <strong>3 PRs to CNCF Inspektor Gadget</strong>.
+        I'm Puneeth Aditya, deep in learning mode and building systems-heavy software across Rust,
+        cloud-native infrastructure, compilers, eBPF, and ML infrastructure.
         <br /><br />
-        Co-founded <strong>Klyna.io</strong>, API monitoring built in Rust with PostgreSQL and Redis
-        because existing tools were either too heavy or told you nothing useful.
+        Currently building <strong>Klyna</strong>, making APIs observable, debuggable, and self healing.
+        I'm also maintaining <strong>mohu-org</strong>, <strong>nova-editor</strong>, and <strong>aathoos</strong>.
         <br /><br />
-        Currently building <strong>mohu-org</strong>: a NumPy replacement in pure Rust with Arrow-native
-        storage, SIMD kernels, and zero-copy Python bindings via PyO3.
+        Open source work includes <strong>mofa</strong>, <strong>LLVM</strong>, <strong>inspektor-gadget</strong>,
+        <strong> microcks</strong>, <strong>kuadrant</strong>, and <strong>litmuschaos</strong>.
       </div>
 
       {/* education row */}
@@ -123,14 +120,14 @@ export default function AboutContent() {
             fontFamily: 'inherit', fontSize: 12, cursor: 'pointer',
             display: 'flex', alignItems: 'center', gap: 6, fontWeight: 'bold',
           }}>
-            Hire Me →
+            Email
           </button>
         </a>
       </div>
 
       {/* footer */}
       <div style={{ fontSize: 10, color: '#808080', marginTop: 2 }}>
-        Portfolio OS v2.0  ·  puneethaditya.vercel.app  ·  © 2025 Puneeth Aditya
+        Portfolio OS v2.0  ·  puneethaditya.vercel.app  ·  © 2026 Puneeth Aditya
       </div>
     </div>
   );
